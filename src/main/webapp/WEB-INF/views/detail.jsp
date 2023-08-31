@@ -116,6 +116,7 @@
             success: function(commentList) {
                 console.log("작성성공");
                 console.log(commentList);
+
                 let output = "<table>";
                 output += "<tr><th>댓글번호</th>";
                 output += "<th>작성자</th>";
@@ -131,8 +132,9 @@
                 }
                 output += "</table>";
                 document.getElementById('comment-list').innerHTML = output;
-                document.getElementById('commentWriter').value='';
+                document.getElementById('commentWriter').value=''; //댓글란 리셋
                 document.getElementById('commentContents').value='';
+
             },
             error: function() {
                 console.log("실패");

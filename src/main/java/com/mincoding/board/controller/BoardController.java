@@ -1,8 +1,10 @@
 package com.mincoding.board.controller;
 
 import com.mincoding.board.dto.BoardDTO;
+import com.mincoding.board.dto.CommentDTO;
 import com.mincoding.board.dto.PageDTO;
 import com.mincoding.board.service.BoardService;
+import com.mincoding.board.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
+    private final CommentService commentService;
 
     @GetMapping("/save")
     public String saveForm(){
@@ -47,8 +50,8 @@ public class BoardController {
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("board", boardDTO);
         model.addAttribute("page", page);
-        //List<CommentDTO> commentDTOList = commentService.findAll(id);
-        //model.addAttribute("commentList", commentDTOList);
+        List<CommentDTO> commentDTOList = commentService.findAll(id);
+        model.addAttribute("commentList", commentDTOList);
         return "detail";
     }
 
